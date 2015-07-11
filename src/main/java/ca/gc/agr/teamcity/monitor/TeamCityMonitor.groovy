@@ -43,6 +43,13 @@ class TeamCityMonitor implements Runnable {
 	private static final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 	
 	public static void main(args) {
+		log.info(" ============ Startup Parameters ============ ");
+		log.info("   TeamCity URL: ${TC_HOST}${CONTEXT_ROOT}");
+		log.info("   Siren Address: ${SIREN_IP}:${SIREN_PORT}");
+		log.info("   Refresh state: every ${UPDATE_EVERY} seconds.");
+		log.info("   Supress Siren after hours: ${SUPRESS_SIREN_AFTER_HOURS}");
+		log.info(" ============================================ ");
+		
 		scheduler.scheduleAtFixedRate( new TeamCityMonitor(), 0, UPDATE_EVERY, TimeUnit.SECONDS );
 	}
 	
