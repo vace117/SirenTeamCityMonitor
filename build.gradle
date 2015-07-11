@@ -1,0 +1,39 @@
+version = '1.0'
+description = 'Monitors TeamCity build status and communicates any errors to the Siren Controller'
+
+apply plugin: 'groovy'
+apply plugin: 'eclipse'
+apply plugin: 'application'
+
+mainClassName = "ca.gc.agr.teamcity.monitor.TeamCityMonitor"
+
+sourceSets.main {
+	java.srcDirs = []
+	groovy.srcDirs += ["src/main/java"]
+}
+
+sourceSets.test {
+	java.srcDirs = []
+	groovy.srcDirs += ["src/test/java"]
+}
+
+
+dependencies {
+	compile "org.codehaus.groovy:groovy-all:2.3.3"
+	compile "org.codehaus.groovy.modules.http-builder:http-builder:0.7.1"
+	
+	compile ("log4j:log4j:1.2.17") {
+		exclude(module: 'mail')
+	}
+}
+
+
+
+
+
+repositories {
+	maven {
+		url = "http://mbwinnc664466:8081/nexus/content/groups/public"
+	}
+}
+
