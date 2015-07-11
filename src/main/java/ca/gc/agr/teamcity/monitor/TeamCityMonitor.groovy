@@ -31,12 +31,12 @@ class TeamCityMonitor implements Runnable {
 	/**
 	 * Update interval
 	 */
-	private static final int UPDATE_EVERY = 20; // Seconds
+	private static final int UPDATE_EVERY = 10; // Seconds
 	
 	/**
 	 * Prevent siren operation after hours
 	 */
-	private static final boolean SUPRESS_SIREN_AFTER_HOURS = true;  
+	private static final boolean SUPRESS_SIREN_AFTER_HOURS = true;
 	
 	
 	
