@@ -50,6 +50,7 @@ class TeamCityMonitor implements Runnable {
 		log.info("   Supress Siren after hours: ${SUPRESS_SIREN_AFTER_HOURS}");
 		log.info(" ============================================ ");
 		
+		log.info("Starting to poll TeamCity.");
 		scheduler.scheduleAtFixedRate( new TeamCityMonitor(), 0, UPDATE_EVERY, TimeUnit.SECONDS );
 	}
 	
@@ -58,6 +59,8 @@ class TeamCityMonitor implements Runnable {
 		boolean redAlert = false;
 		
 		if ( !SUPRESS_SIREN_AFTER_HOURS || !isAfterHours() ) {
+			log.info("Requesting build status...");
+			
 			// Get all failed builds after the last successful one. That just means get all failed
 			// build configurations
 			//
@@ -82,6 +85,9 @@ class TeamCityMonitor implements Runnable {
 			else {
 				throw new IllegalStateException("TeamCity returned no XML data");
 			}
+		}
+		else {
+			log.info("Not requesting build status, b/c it is after hours.");
 		}
 		
 		redAlert ? sirenOn() : sirenOff();
