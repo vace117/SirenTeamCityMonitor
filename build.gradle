@@ -3,9 +3,20 @@ description = 'Monitors TeamCity build status and communicates any errors to the
 
 apply plugin: 'groovy'
 apply plugin: 'eclipse'
-apply plugin: 'application'
 
+apply plugin: 'application'
 mainClassName = "ca.gc.agr.teamcity.monitor.TeamCityMonitor"
+
+apply plugin: 'gradle-one-jar'
+task awesomeFunJar(type: OneJar) {
+	mainClass = 'ca.gc.agr.teamcity.monitor.TeamCityMonitor'
+}
+
+
+
+jar {
+	from sourceSets.main.allGroovy
+}
 
 sourceSets.main {
 	java.srcDirs = []
@@ -29,7 +40,12 @@ dependencies {
 
 
 
-
+buildscript {
+	repositories { maven { url = 'http://mbwinna664466d:8081/nexus/content/groups/public' } }
+	dependencies {
+		classpath 'com.github.rholder:gradle-one-jar:1.0.4'
+	}
+}
 
 repositories {
 	maven {
