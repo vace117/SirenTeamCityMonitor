@@ -25,7 +25,7 @@ class TeamCityMonitor implements Runnable {
 	private static final String CONTEXT_ROOT = '/TCAM';
 	private static final String TC_REST_API_BUILDS = '/httpAuth/app/rest/builds/';
 	
-	private static final String SIREN_IP = '10.113.164.158';
+	private static final String SIREN_IP = 'raspberrypi.agr.gc.ca';
 	private static final int SIREN_PORT = 8080;
 	
 	/**
